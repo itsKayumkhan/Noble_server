@@ -1,0 +1,267 @@
+.dior-slide-section {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.dior-slide-container {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Column Base Styles */
+.dior-slide-column {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  flex-shrink: 0;
+}
+
+.dior-slide-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.dior-slide-content img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Initial State - Center is Full Width */
+.dior-slide-center {
+  width: 100%;
+  opacity: 1;
+  z-index: 3;
+}
+
+.dior-slide-left,
+.dior-slide-right {
+  width: 0%;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Split State - Three Columns */
+.dior-slide-container.split .dior-slide-center {
+  width: 33.333%;
+  opacity: 1;
+}
+
+.dior-slide-container.split .dior-slide-left {
+  width: 33.333%;
+  opacity: 1;
+  pointer-events: all;
+}
+
+.dior-slide-container.split .dior-slide-right {
+  width: 33.333%;
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* Text Overlay Styles */
+.dior-slide-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #ffffff;
+  z-index: 10;
+  width: 80%;
+  max-width: 500px;
+  transition: opacity 0.5s ease;
+}
+
+.dior-label {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 15px;
+  opacity: 0.9;
+}
+
+.dior-slide-text h2 {
+  font-size: 48px;
+  font-weight: 300;
+  line-height: 1.2;
+  margin: 0 0 25px 0;
+  font-family: Georgia, serif;
+}
+
+.dior-slide-text h3 {
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.3;
+  margin: 0 0 20px 0;
+  font-family: Georgia, serif;
+}
+
+.dior-slide-text p {
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 0 0 20px 0;
+  opacity: 0.95;
+}
+
+.dior-discover-btn {
+  display: inline-block;
+  padding: 12px 35px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.dior-discover-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: #ffffff;
+  transform: translateY(-2px);
+}
+
+/* Hover Effects on Individual Columns */
+.dior-slide-container.split .dior-slide-column:hover {
+  transform: scale(1.02);
+  z-index: 5;
+}
+
+.dior-slide-column::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.3) 100%);
+  z-index: 1;
+  transition: opacity 0.3s ease;
+}
+
+.dior-slide-column:hover::before {
+  opacity: 0.7;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1024px) {
+  .dior-slide-text h2 {
+    font-size: 36px;
+  }
+  
+  .dior-slide-text h3 {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .dior-slide-container {
+    flex-direction: column;
+    min-height: auto;
+  }
+  
+  .dior-slide-column {
+    height: 100vh;
+  }
+  
+  /* Mobile - Stack vertically instead of horizontal */
+  .dior-slide-center {
+    width: 100% !important;
+    height: 100vh;
+  }
+  
+  .dior-slide-left,
+  .dior-slide-right {
+    width: 100% !important;
+    height: 0vh;
+  }
+  
+  .dior-slide-container.split .dior-slide-center {
+    width: 100% !important;
+    height: 100vh;
+  }
+  
+  .dior-slide-container.split .dior-slide-left {
+    width: 100% !important;
+    height: 100vh;
+  }
+  
+  .dior-slide-container.split .dior-slide-right {
+    width: 100% !important;
+    height: 100vh;
+  }
+  
+  .dior-slide-text h2 {
+    font-size: 28px;
+  }
+  
+  .dior-slide-text h3 {
+    font-size: 18px;
+  }
+  
+  .dior-slide-text {
+    width: 90%;
+  }
+}
+
+/* Animation for smooth appearance */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dior-slide-text > * {
+  animation: fadeIn 0.6s ease-out backwards;
+}
+
+.dior-label {
+  animation-delay: 0.2s;
+}
+
+.dior-slide-text h2,
+.dior-slide-text h3 {
+  animation-delay: 0.3s;
+}
+
+.dior-discover-btn {
+  animation-delay: 0.4s;
+}
+
+/* Cursor hint for clickable center image */
+.dior-slide-center:not(.dior-slide-container.split .dior-slide-center) {
+  cursor: pointer;
+}
+
+/* Loading State */
+.dior-slide-content img {
+  opacity: 0;
+  animation: imageLoad 0.5s ease-out 0.3s forwards;
+}
+
+@keyframes imageLoad {
+  to {
+    opacity: 1;
+  }
+}
