@@ -10,7 +10,7 @@
     // Page has loaded and theme assets are ready
   });
 */
-
+alert("from github");
 window.theme = window.theme || {};
 window.Shopify = window.Shopify || {};
 
